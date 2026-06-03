@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MyMemoriX Login</title>
+
+<style>
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+font-family:Arial, sans-serif;
+}
+
+body{
+height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:url("https://images.unsplash.com/photo-1524985069026-dd778a71c7b4") center/cover no-repeat;
+overflow:hidden;
+}
+
+/* overlay gelap */
+.overlay{
+position:absolute;
+inset:0;
+background:rgba(0,0,0,0.75);
+backdrop-filter:blur(3px);
+}
+
+/* CONTAINER */
+.container{
+position:relative;
+z-index:2;
+width:340px;
+padding:30px;
+border-radius:12px;
+background:rgba(20,0,0,0.85);
+box-shadow:0 0 25px rgba(255,0,0,0.3);
+border:1px solid rgba(255,0,0,0.4);
+text-align:center;
+}
+
+/* TITLE */
+.container h1{
+color:#ff1e1e;
+margin-bottom:5px;
+}
+
+.container p{
+color:#fff;
+opacity:0.7;
+font-size:12px;
+margin-bottom:20px;
+}
+
+/* INPUT */
+.input-box{
+position:relative;
+margin:10px 0;
+}
+
+input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:6px;
+outline:none;
+}
+
+/* tombol lihat password */
+.toggle{
+position:absolute;
+right:10px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:14px;
+color:#999;
+user-select:none;
+}
+
+/* BUTTON */
+button{
+width:100%;
+padding:12px;
+margin-top:15px;
+border:none;
+border-radius:6px;
+background:#ff1e1e;
+color:white;
+font-weight:bold;
+cursor:pointer;
+transition:.3s;
+}
+
+button:hover{
+background:#ff4b4b;
+}
+
+/* ERROR */
+.error{
+color:#ff6b6b;
+font-size:13px;
+margin-top:10px;
+}
+
+/* hint */
+small{
+display:block;
+margin-top:10px;
+opacity:0.6;
+color:white;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="overlay"></div>
+
+<div class="container">
+<h1>MyMemoriX</h1>
+<p>Masuk untuk melihat kenangan</p>
+
+<input type="text" id="username" placeholder="Username">
+
+<div class="input-box">
+<input type="password" id="password" placeholder="Password">
+<span class="toggle" onclick="togglePass()">👁</span>
+</div>
+
+<button onclick="login()">Masuk</button>
+
+<div class="error" id="error"></div>
+
+<small>Hint: admin / 1234</small>
+</div>
+
+<script>
+function login(){
+const user = document.getElementById("username").value;
+const pass = document.getElementById("password").value;
+const error = document.getElementById("error");
+
+if(
+(user === "1dle123" && pass === "kopi123^") ||
+(user === "Agaryss" && pass === "Garyss")
+){
+
+error.style.color = "#4cff4c";
+error.innerText = "Login berhasil! Mengalihkan...";
+
+// kasih delay biar terasa ada proses
+setTimeout(()=>{
+window.location.href = "dashboard.html";
+},1500);
+
+}else{
+
+error.style.color = "#ff6b6b";
+error.innerText = "Username atau password salah!";
+}
+}
+
+/* SHOW / HIDE PASSWORD */
+function togglePass(){
+const pass = document.getElementById("password");
+
+if(pass.type === "password"){
+pass.type = "text";
+}else{
+pass.type = "password";
+}
+}
+</script>
+
+</body>
+</html>
